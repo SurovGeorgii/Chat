@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <%- include("Blocks/header") -%>
+
+    <div class="container">
+        <h1>Список пользователей</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Email</th>
+                    <th>Количество посещений</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.username %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.visits %></td>
+                        <td><%= user.role || "Не указанно" %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

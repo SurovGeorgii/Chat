@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать профиль</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <%- include("Blocks/header") -%>
+
+    <div class="container">
+        <h1>Редактировать профиль</h1>
+        <form action="/profile/edit" method="POST">
+            <div>
+                <label for="username">Имя пользователя:</label>
+                <input type="text" name="username" value="<%= user.username %>" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" value="<%= user.email %>" required>
+            </div>
+            <div>
+                <label for="password">Новый пароль:</label>
+                <input type="password" name="password" placeholder="Оставьте пустым, если не хотите менять">
+            </div>
+            <button type="submit">Сохранить изменения</button>
+        </form>
+    </div>
+</body>
+</html>

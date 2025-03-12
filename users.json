@@ -1,0 +1,42 @@
+[
+  {
+    "username": "yes",
+    "password": "$2b$10$X3e3MKRw7efowLswwgqsV.6eBhaEpU.rpvo8tJST9l3M08l4qgGIe"
+  },
+  {
+    "username": "www",
+    "email": "wwwww@gmailcom",
+    "password": "$2b$10$tl.iNUg1AnvbclTt9BVXcOOXqKU5fTFTOBUyoRx2caSLMuO5mwPZu"
+  },
+  {
+    "username": "yes",
+    "email": "wwwww@gmailcom",
+    "password": "$2b$10$h2cBYHuy3NqvT4tt8fYFNeWv.awagItc.nz28.dx8Jo99EeUj.CO."
+  },
+  {
+    "username": "yes",
+    "email": "wwwww@gmailcom",
+    "password": "$2b$10$VghL6uhZ.QB1i6zq9N4WN.HCS.9mBZRpYMiO2prpA36SRV.1mABha"
+  },
+  {
+    "username": "te",
+    "email": "te@gmail.com",
+    "password": "$2b$10$EBRpHGULGFVoNMCB9mr6aO18VIZUrL3a3uwRBGLarGrX0M3hplzfG",
+    "role": "user",
+    "visits": 1
+  },
+  {
+    "username": "capybara",
+    "email": "one@gmail.com",
+    "password": "$2b$10$zsl9GYMOuePixRu61o5HW.X4nKkvFm3jwr7C4CUKGmDYkQrNoG86G",
+    "role": "user",
+    "visits": 2
+  },
+  {
+    "username": "danil",
+    "email": "mrdanik12@gmail.com",
+    "password": "$2b$10$XkXbZxT/p.PPtJWms3mzBOsZpja6nSVSmYCknDe4ybjrrfqfU/wGC",
+    "role": "user",
+    "visits": 2
+  }
+]

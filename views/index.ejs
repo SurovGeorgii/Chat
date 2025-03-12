@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <%- include("Blocks/header") -%>
+
+    <% if (role == "Admin") { %>
+        <li><a href="/admusers">Админ-панель</a></li>
+    <% } %>
+
+    <div class="container">
+        <h1>Добро пожаловать, <%= user %>!</h1>
+
+        <% if (user) { %>
+            <a href="/profile/edit"><button>Редактировать профиль</button></a>
+        <% } %>
+
+        <p>Вот несколько полезных ссылок:</p>
+        <ul>
+            <li><a href="https://www.google.com">Google</a></li>
+            <li><a href="https://www.wikipedia.org">Wikipedia</a></li>
+            <li><a href="https://www.github.com">GitHub</a></li>
+            <li><a href="https://www.youtube.com">YouTube</a></li>
+            <li><a href="https://www.reddit.com">Reddit</a></li>
+            <li><a href="https://www.stackoverflow.com">Stack Overflow</a></li>
+        </ul>
+
+        <% if (role == "Admin") { %>
+            <li><a href="/admusers">Админ-панель</a></li>
+        <% } %>
+
+    </div>
+
+    <div id="chat-widget">
+        <!-- Кнопка для открытия/закрытия чата -->
+        <div class="chat-button" onclick="toggleChat()">
+            💬
+        </div>
+        
+        <!-- Само окно чата, изначально скрытое -->
+        <div id="chat-box" class="hidden">
+            <!-- Заголовок чата, который тоже можно нажать для сворачивания -->
+            <div class="chat-header" onclick="toggleChat()">Чат</div>
+    
+            <!-- Блок для отображения сообщений -->
+            <div id="messages" class="chat-messages"></div>
+    
+            <!-- Поле ввода сообщения + кнопка отправки -->
+            <div class="chat-input">
+                <input id="messageInput" type="text" placeholder="Введите сообщение..." autocomplete="off">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Подключение Socket.io для работы с WebSocket -->
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script>
+        // Создаём соединение с сервером через WebSocket
+        const socket = io();
+    
+        // Получаем ссылки на HTML-элементы
+        const messages = document.getElementById('messages'); // Контейнер с сообщениями
+        const input = document.getElementById('messageInput'); // Поле ввода текста
+        const chatBox = document.getElementById('chat-box'); // Само окно чата
+    
+        // Получаем сообщение от сервера
+        socket.on('chat message', (msg) => {
+            // Создаём новый элемент для сообщения
+            const div = document.createElement('div');
+            div.classList.add('message'); // Добавляем CSS-класс для стилизации
+    
+            // Создаём элемент для имени пользователя
+            const usernameDiv = document.createElement('span');
+            usernameDiv.classList.add('username'); // CSS-класс
+            usernameDiv.textContent = msg.username; // Записываем имя пользователя
+            div.appendChild(usernameDiv); // Добавляем в контейнер сообщения
+    
+            // Создаём элемент для текста сообщения
+            const messageDiv = document.createElement('span');
+            messageDiv.classList.add('message-text'); // CSS-класс
+            messageDiv.textContent = ': ' + msg.text; // Сам текст сообщения
+            div.appendChild(messageDiv); // Добавляем в контейнер сообщения
+    
+            // Добавляем сообщение в чат
+            messages.appendChild(div);
+    
+            // Прокручиваем чат вниз, чтобы было видно последнее сообщение
+            messages.scrollTop = messages.scrollHeight;
+        });
+    
+        // Функция отправки сообщения
+        function sendMessage() {
+            const msg = input.value.trim(); // Убираем лишние пробелы
+            if (msg) { // Проверяем, что строка не пустая
+                socket.emit('chat message', msg); // Отправляем сообщение на сервер
+                input.value = ''; // Очищаем поле ввода
+            }
+        }
+    
+        // Обрабатываем нажатие клавиши Enter для отправки сообщения
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    
+        // Функция для сворачивания и разворачивания чата
+        function toggleChat() {
+            chatBox.classList.toggle('hidden'); // Добавляет/убирает класс "hidden"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <%- include("Blocks/header") -%>
+
+    <h1>Страница пользователя: <%=username%></h1>
+    <% if(username.toLowerCase()=="john"){ %>
+        <h3>Что он любит делать/hobby:</h3>
+
+        <ul>
+            <%hobbies.forEach((el)=>{%>
+                <li>
+                    <%=el%>
+                </li>
+            <%})%>
+        </ul>
+    <%}%>
+
+</body>
+</html>
