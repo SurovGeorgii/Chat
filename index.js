@@ -188,4 +188,5 @@ io.on('connection', (socket) => {
 const PORT = "8070";
 server.listen(PORT, () => {
     console.log(`Server is up! http://localhost:${PORT}`);
+    console.log("Yes")
 });
